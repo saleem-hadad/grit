@@ -8,11 +8,11 @@ module.exports = {
         './resources/views/**/*.blade.php',
         './resources/js/**/*.jsx',
     ],
-
+    darkMode: 'class',
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Figtree', ...defaultTheme.fontFamily.sans],
+                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
         },
     },
