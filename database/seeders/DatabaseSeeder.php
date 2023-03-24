@@ -15,7 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             \Database\Seeders\UserSeeder::class,
             \Database\Seeders\CompetencyMatrixSeeder::class,
-            \Database\Seeders\AchievementSeeder::class,
         ]);
     }
 }
