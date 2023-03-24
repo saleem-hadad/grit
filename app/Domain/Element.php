@@ -7,14 +7,14 @@ use Illuminate\Support\Str;
 
 abstract class Element implements JsonSerializable
 {
-    protected string $name;
+    protected $name;
 
     public function __construct()
     {
         $this->name = $this->humanizedName();
     }
 
-    public function humanizedName(): string
+    public function humanizedName()
     {
         return Str::title(Str::snake(class_basename(get_class($this)), ' '));
     }
@@ -26,7 +26,7 @@ abstract class Element implements JsonSerializable
         return $this;
     }
 
-    public function jsonSerialize(): array
+    public function jsonSerialize()
     {
         return [
             'name' => $this->name,

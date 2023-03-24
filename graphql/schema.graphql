@@ -23,6 +23,9 @@ type Query {
     "List multiple achievements."
     achievements: [Achievement!]! @paginate(defaultCount: 200)
     competencies: [Competency!]! @all
+
+    achievementsTrend(range: String!): Json
+    competenciesReport(range: String!): Json
 }
 
 "Achievement model"
