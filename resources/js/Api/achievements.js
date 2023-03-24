@@ -29,3 +29,16 @@ export const getAchievements = (page) => {
     `)
     .toPromise();
 }
+
+
+export const createAchievement = (summary, date, links, metricsIds) => {
+    return client
+    .mutation(gql`
+        mutation {
+            createAchievement(summary: """${summary}""" date: """${date}""" links: """${JSON.stringify(links)}""" metrics: ${metricsIds}) {
+                id
+            }
+        }
+    `)
+    .toPromise();
+}

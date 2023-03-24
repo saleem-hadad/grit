@@ -11,6 +11,8 @@ class Achievement extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     protected $with = ['links'];
 
     public function links(): HasMany

@@ -93,9 +93,9 @@ export default function Index({auth}) {
                         <LoadMore hasContent={achievements.length > 0} hasMorePages={hasMorePages} loading={loading} onClick={() => setCurrentPage(currentPage+1)} />
                     </div>
 
-                    <Create competencies={competencies} />
                 </div>
             </div>
+            <Create competencies={competencies} />
         </AuthenticatedLayout>
     );
 }

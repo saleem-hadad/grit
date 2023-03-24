@@ -10,6 +10,8 @@ class Link extends Model
 {
     use HasFactory;
 
+    protected $guarded = [];
+
     public function achievement(): BelongsTo
     {
         return $this->belongsTo(Achievement::class);

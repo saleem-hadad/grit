@@ -1,3 +1,4 @@
+import { createAchievement } from '@/Api';
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
@@ -64,6 +65,16 @@ export default function Create({ competencies }) {
     };
 
     const handleSave = () => {
+        if(selectedMetricsIds.length === 0) {
+            return;
+        }
+
+        createAchievement(summary, date, links, selectedMetricsIds)
+            .then(({data}) => {
+                console.log(data);
+            })
+            .catch(console.error);
+
         setSummary('');
         setLinks([{ label: '', url: '' }]);
         setShowSelectCompetencies(false);
@@ -73,9 +84,9 @@ export default function Create({ competencies }) {
     };
 
     return (
-      <div className="bg-white shadow-xl border border-sky-500 sm:rounded-lg max-w-2xl left-0 right-0 mx-auto absolute bottom-0 -mb-64 hover:-mb-4 transition-all">
+      <div className="bg-white shadow-xl border border-sky-500 sm:rounded-lg max-w-2xl left-0 right-0 mx-auto fixed -mb-96 hover:-mb-2 bottom-0 group transition-all">
         {!showSelectCompetencies && !showSelectMetrics && <div className="px-4 py-5 sm:p-6 space-y-4">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">Record an achievement</h3>
+          <h3 className="text-base font-semibold leading-6 text-gray-900 text-center">Record an achievement</h3>
             <div className="w-full">
                 <label className="block text-gray-700 font-bold mb-2" htmlFor="summary">
                 Summary
@@ -144,7 +155,7 @@ export default function Create({ competencies }) {
         </div>}
 
         {showSelectCompetencies && !showSelectMetrics && <div className="px-4 py-5 sm:p-6 space-y-4">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">Select the corresponding competencies</h3>
+          <h3 className="text-base font-semibold leading-6 text-gray-900 text-center">Select the corresponding competencies</h3>
             <div className="w-full p-2 bg-gray-50 border rounded">
                 <p>{summary}</p>
             </div>
@@ -169,7 +180,7 @@ export default function Create({ competencies }) {
         </div>}
 
         {!showSelectCompetencies && showSelectMetrics && <div className="px-4 py-5 sm:p-6 space-y-4">
-          <h3 className="text-base font-semibold leading-6 text-gray-900">Select the corresponding metrics</h3>
+          <h3 className="text-base font-semibold leading-6 text-gray-900 text-center">Select the corresponding metrics</h3>
             <div className="w-full p-2 bg-gray-50 border rounded">
                 <p>{summary}</p>
             </div>
