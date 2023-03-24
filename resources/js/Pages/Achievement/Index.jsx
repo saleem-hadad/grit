@@ -36,6 +36,10 @@ export default function Index({auth}) {
             .catch(console.error);
     }, []);
 
+    const onCreate = (createdItem) => {
+        setAchievements([...achievements, createdItem]);
+    }
+
     return (
         <AuthenticatedLayout auth={auth}>
             <Head title="Achievements" />
@@ -95,7 +99,7 @@ export default function Index({auth}) {
 
                 </div>
             </div>
-            <Create competencies={competencies} />
+            <Create competencies={competencies} onCreate={onCreate} />
         </AuthenticatedLayout>
     );
 }

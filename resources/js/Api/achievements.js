@@ -37,6 +37,18 @@ export const createAchievement = (summary, date, links, metricsIds) => {
         mutation {
             createAchievement(summary: """${summary}""" date: """${date}""" links: """${JSON.stringify(links)}""" metrics: ${metricsIds}) {
                 id
+                date
+                summary
+                metrics {
+                    name
+                    competency {
+                    name
+                    }
+                }
+                links {
+                    label
+                    url
+                }
             }
         }
     `)

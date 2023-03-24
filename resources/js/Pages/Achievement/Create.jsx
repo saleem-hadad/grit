@@ -2,7 +2,7 @@ import { createAchievement } from '@/Api';
 import { useState } from 'react';
 import { FaPlus } from 'react-icons/fa';
 
-export default function Create({ competencies }) {
+export default function Create({ competencies, onCreate }) {
     const [summary, setSummary] = useState('');
     const [date, setDate] = useState('');
     const [links, setLinks] = useState([{ label: '', url: '' }]);
@@ -71,7 +71,7 @@ export default function Create({ competencies }) {
 
         createAchievement(summary, date, links, selectedMetricsIds)
             .then(({data}) => {
-                console.log(data);
+                onCreate(data.createAchievement);
             })
             .catch(console.error);
 
