@@ -24,7 +24,9 @@
         "chartjs-plugin-annotation": "^2.2.1",
         "circlepack-chart": "^1.8.1",
         "graphql": "^16.6.0",
+        "isomorphic-unfetch": "^4.0.2",
         "react-chartjs-2": "^5.2.0",
+        "react-icons": "^4.8.0",
         "urql": "^3.0.4"
     }
 }

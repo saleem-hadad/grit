@@ -1,5 +1,5 @@
 import { createClient, dedupExchange, fetchExchange } from '@urql/core';
-import 'isomorphic-unfetch';
+import 'unfetch/polyfill'
 
 export default createClient({
     url: location.origin + '/graphql',

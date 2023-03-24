@@ -13,7 +13,7 @@ class Metric extends Model
 
     public function achievements(): BelongsToMany
     {
-        return $this->belongsToMany(Achievement::class);
+        return $this->belongsToMany(Achievement::class)->withTimestamps();
     }
 
     public function competency(): BelongsTo

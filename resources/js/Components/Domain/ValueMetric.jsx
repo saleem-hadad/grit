@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { TrendingUpIcon, TrendingDownIcon } from '@heroicons/react/solid';
+import { ArrowTrendingUpIcon, ArrowTrendingDownIcon } from '@heroicons/react/24/solid';
 
 import { query } from '@/Api';
 import Card from "../Card";
@@ -68,12 +68,12 @@ export default function ValueMetric({name, graphql_query, ranges}) {
                 </div>
 
                 <p className="flex items-center text-4xl mb-4">
-                    { getAppCurrency() } { formatNumber(value) }
+                    { value }
                 </p>
 
                 {increaseOrDecrease() !== 0 && <div className="flex">
-                    {increaseOrDecreaseLabel() === 'Increase' && <TrendingUpIcon className={["mr-2 h-5 w-5", increaseColor()].join(' ')} aria-hidden="true" />}
-                    {increaseOrDecreaseLabel() === 'Decrease' && <TrendingDownIcon className={["mr-2 h-5 w-5", decreaseColor()].join(' ')} aria-hidden="true" />}
+                    {increaseOrDecreaseLabel() === 'Increase' && <ArrowTrendingUpIcon className={["mr-2 h-5 w-5", increaseColor()].join(' ')} aria-hidden="true" />}
+                    {increaseOrDecreaseLabel() === 'Decrease' && <ArrowTrendingDownIcon className={["mr-2 h-5 w-5", decreaseColor()].join(' ')} aria-hidden="true" />}
 
                     {growthPercentage() !== 0 && <p className="text-gray-500 font-bold">
                         {growthPercentage()}% {increaseOrDecreaseLabel()}

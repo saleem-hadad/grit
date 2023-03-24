@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('links', function (Blueprint $table) {
+        Schema::create('achievement_metric', function (Blueprint $table) {
             $table->id();
-            $table->string('label');
-            $table->string('url');
             $table->unsignedBigInteger('achievement_id');
+            $table->unsignedBigInteger('metric_id');
+
             $table->foreign('achievement_id')->references('id')->on('achievements')->onDelete('cascade');
+            $table->foreign('metric_id')->references('id')->on('metrics')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('links');
+        Schema::dropIfExists('achievement_metric');
     }
 };

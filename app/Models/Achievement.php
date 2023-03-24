@@ -11,6 +11,8 @@ class Achievement extends Model
 {
     use HasFactory;
 
+    protected $with = ['links'];
+
     public function links(): HasMany
     {
         return $this->hasMany(Link::class);
@@ -18,6 +20,6 @@ class Achievement extends Model
 
     public function metrics(): BelongsToMany
     {
-        return $this->belongsToMany(Metric::class);
+        return $this->belongsToMany(Metric::class)->withTimestamps();
     }
 }
