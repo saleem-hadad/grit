@@ -7,6 +7,7 @@ export default function Create({ competencies }) {
     const [links, setLinks] = useState([{ label: '', url: '' }]);
     const [showSelectCompetencies, setShowSelectCompetencies] = useState(false);
     const [showSelectMetrics, setShowSelectMetrics] = useState(false);
+    const [selectedCompetenciesIds, setSelectedCompetenciesIds] = useState([]);
     const [selectedMetricsIds, setSelectedMetricsIds] = useState([]);
 
     const handleSummaryChange = (e) => {
@@ -41,6 +42,22 @@ export default function Create({ competencies }) {
         setShowSelectCompetencies(true);
     };
 
+    const handleSelectCompetency = (id) => {
+        if(selectedCompetenciesIds.includes(id)) {
+            setSelectedCompetenciesIds(selectedCompetenciesIds.filter((competencyId) => competencyId !== id));
+        } else {
+            setSelectedCompetenciesIds([...selectedCompetenciesIds, id]);
+        }
+    }
+
+    const handleSelectMetric = (id) => {
+        if(selectedMetricsIds.includes(id)) {
+            setSelectedMetricsIds(selectedMetricsIds.filter((metricId) => metricId !== id));
+        } else {
+            setSelectedMetricsIds([...selectedMetricsIds, id]);
+        }
+    }
+
     const handleShowSelectMetrics = () => {
         setShowSelectCompetencies(false);
         setShowSelectMetrics(true);
@@ -51,6 +68,8 @@ export default function Create({ competencies }) {
         setLinks([{ label: '', url: '' }]);
         setShowSelectCompetencies(false);
         setShowSelectMetrics(false);
+        setSelectedCompetenciesIds([]);
+        setSelectedMetricsIds([]);
     };
 
     return (
@@ -131,8 +150,9 @@ export default function Create({ competencies }) {
             </div>
 
             <div className="w-full grid grid-cols-4 text-sm gap-2">
-                {competencies.map((competency, index) => (
-                    <div key={index} className="border rounded p-1">
+                {competencies.map((competency) => (
+                    <div key={competency.id} className={selectedCompetenciesIds.includes(competency.id) ? 'border rounded p-1 border-blue-500 cursor-pointer' : 'border rounded p-1 cursor-pointer'} 
+                        onClick={() => handleSelectCompetency(competency.id)}>
                         <p className="text-gray-700 font-bold" >
                             {competency.name}
                         </p>
@@ -154,12 +174,22 @@ export default function Create({ competencies }) {
                 <p>{summary}</p>
             </div>
 
-            <div className="w-full grid grid-cols-4 text-sm gap-2">
-                {competencies.map((competency, index) => (
-                    <div key={index} className="border rounded p-1">
+            <div className="w-full text-sm space-y-2">
+                {competencies.filter((competency) => selectedCompetenciesIds.includes(competency.id)).map((competency) => (
+                    <div key={competency.id}>
                         <p className="text-gray-700 font-bold" >
                             {competency.name}
                         </p>
+                        <div className="grid grid-cols-1 gap-2">
+                            {competency.metrics.map((metric) => (
+                                <div key={metric.id} className={selectedMetricsIds.includes(metric.id) ? 'border rounded p-1 border-blue-500 cursor-pointer' : 'border rounded p-1 cursor-pointer'}
+                                    onClick={() => handleSelectMetric(metric.id)}>
+                                    <p className="text-gray-700 font-bold text-xs" >
+                                        {metric.name} - {metric.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
                     </div>
                 ))}
             </div>

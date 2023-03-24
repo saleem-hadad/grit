@@ -6,6 +6,7 @@ export const getAllCompetencies = () => {
     .query(gql`
         query {
             competencies {
+                id
                 name
                 metrics {
                     id
