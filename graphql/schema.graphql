@@ -108,10 +108,10 @@ type Mutation {
         "When the achievement was done."
         date: Date!
 
-        "The metric that was achieved."
-        metrics: [ID!]!
-
         "The links to the evidence of the achievement."
         links: String
+
+        "The metric that was achieved."
+        metrics: [Int!]!
     ): Achievement!
 }

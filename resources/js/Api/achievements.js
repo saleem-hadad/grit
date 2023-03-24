@@ -35,7 +35,7 @@ export const createAchievement = (summary, date, links, metricsIds) => {
     return client
     .mutation(gql`
         mutation {
-            createAchievement(summary: """${summary}""" date: """${date}""" links: """${JSON.stringify(links)}""" metrics: ${metricsIds}) {
+            createAchievement(summary: """${summary}""" date: """${date}""" links: """${JSON.stringify(links)}""" metrics: [${metricsIds}]) {
                 id
                 date
                 summary
