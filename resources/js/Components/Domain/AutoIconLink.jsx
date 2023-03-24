@@ -12,7 +12,7 @@ const AutoIconLink = ({ url, label }) => {
   };
 
   return (
-    <a href={url} target="_blank" className='px-2 py-1 rounded-full border border-gray-200 space-x-1 text-xs flex items-center'>
+    <a href={url} target="_blank" className='px-2 py-1 bg-white rounded-full border border-gray-200 space-x-1 text-xs flex items-center'>
       {getIcon()}
       <span>{label}</span>
     </a>
