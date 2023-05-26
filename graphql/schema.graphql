@@ -82,20 +82,8 @@ type Competency {
     "The competency name"
     name: String!
 
-    "The area that the competency belongs to"
-    area: Area! @belongsTo
-
     "The metrics that belong to the competency"
     metrics: [Metric!]! @hasMany
-}
-
-"Area model"
-type Area {
-    "Unique primary key."
-    id: ID!
-
-    "The area name"
-    name: String!
 }
 
 
