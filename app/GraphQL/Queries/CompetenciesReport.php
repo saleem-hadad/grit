@@ -33,7 +33,8 @@ class CompetenciesReport extends Metric
 
         $query = Competency::with(['metrics', 'metrics.achievements' => function ($query) use($rangeData) {
             if($rangeData) {
-                return $query->whereBetween('achievements.created_at', [$rangeData->start(), $rangeData->end()]);
+                return $query->whereBetween('achievements.created_at', [$rangeData->start(), $rangeData->end()])
+                ->orderBy('achievements.date', 'desc');
             }
 
             return $query;

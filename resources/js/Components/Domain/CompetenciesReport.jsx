@@ -55,15 +55,15 @@ export default function CompetenciesReport({name, graphql_query, ranges}) {
                                         <p key={metric.id} className="text-gray-500 px-2 font-bold">{metric.name}</p>
                                         {metric.achievements.length > 0 && <ul className='p-2'>
                                             {metric.achievements.map((achievement, index) => (
-                                                <li key={index} className='pl-4 relative'>
-                                                    <div className="absolute inset-0 flex items-center">
-                                                        <div className="h-2 w-2 bg-green-500 rounded-full"></div>
-                                                    </div>
-                                                    <div className='flex justify-between items-center'>
-                                                        <p key={'ach-' + index} className="z-10 text-gray-500 px-2">{achievement.summary} - {achievement.date}</p>
-                                                        <div className='flex z-10'>
-                                                        {achievement.links.map((link, index) => (<AutoIconLink key={'link' + index} url={link.url} label={link.label} />))}
+                                                <li key={index} className='pl-4 relative py-2 border'>
+                                                    <div>
+                                                        <p className="text-gray-500 px-2">Date: {achievement.date}</p>
+                                                        <p key={'ach-' + index} className="text-gray-700 px-2">{achievement.summary}</p>
+                                                        <div className='z-10 flex flex-col'>
+                                                            {achievement.links.length > 0 && <p className="z-10 text-gray-500 px-2">Links:</p>}
+                                                            {achievement.links.map((link, index) => (<AutoIconLink key={'link' + index} url={link.url} label={link.url} />))}
                                                         </div>
+                                                        <p>-----</p>
                                                     </div>
                                                 </li>
                                             ))}
